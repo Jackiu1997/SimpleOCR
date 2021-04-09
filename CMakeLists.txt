@@ -24,11 +24,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
+find_package(Qt5 COMPONENTS Widgets LinguistTools Network REQUIRED)
+
+# set windows icon
+set(app_WINRC app_win32.rc)
+set_property(SOURCE app_win32.rc APPEND PROPERTY
+    OBJECT_DEPENDS ${PROJECT_SOURCE_DIR}/assets/icon/simple_ocr.ico)
 
 # set qrc files
 set(QRC_FILE assets.qrc)
 qt5_add_resources(QRC ${QRC})
+
+#INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR})
+#AUX_SOURCE_DIRECTORY(${PROJECT_SOURCE_DIR} DIR_SRCS)
 
 if(ANDROID)
   add_library(SimpleOCR SHARED
@@ -41,21 +49,38 @@ if(ANDROID)
     settingform.ui
     qswitchbutton.cpp
     qswitchbutton.h
+    networkapi.cpp
+    networkapi.h
+    clipboardthread.cpp
+    clipboardthread.h
+    appsettings.cpp
+    appsettings.h
+    utils.cpp
+    utils.h
     ${QRC_FILE}
   )
 else()
-  add_executable(SimpleOCR
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-    settingform.cpp
-    settingform.h
-    settingform.ui
-    qswitchbutton.cpp
-    qswitchbutton.h
-    ${QRC_FILE}
+  add_executable(SimpleOCR WIN32
+      main.cpp
+      mainwindow.cpp
+      mainwindow.h
+      mainwindow.ui
+      settingform.cpp
+      settingform.h
+      settingform.ui
+      qswitchbutton.cpp
+      qswitchbutton.h
+      networkapi.cpp
+      networkapi.h
+      clipboardthread.cpp
+      clipboardthread.h
+      appsettings.cpp
+      appsettings.h
+      utils.cpp
+      utils.h
+      ${QRC_FILE}
+      ${app_WINRC}
   )
 endif()
 
-target_link_libraries(SimpleOCR PRIVATE Qt5::Widgets)
+target_link_libraries(SimpleOCR PRIVATE Qt5::Widgets Qt5::Network)

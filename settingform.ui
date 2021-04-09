@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>942</width>
-    <height>642</height>
+    <width>944</width>
+    <height>627</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -160,7 +160,7 @@ QComboBox::down-arrow:on {
               <number>0</number>
              </property>
              <item>
-              <widget class="QSwitchButton" name="label">
+              <widget class="QSwitchButton" name="watchClipboard">
                <property name="enabled">
                 <bool>true</bool>
                </property>
@@ -244,7 +244,7 @@ QComboBox::down-arrow:on {
               <number>0</number>
              </property>
              <item>
-              <widget class="QSwitchButton" name="label_3">
+              <widget class="QSwitchButton" name="selectWordTranslate">
                <property name="enabled">
                 <bool>true</bool>
                </property>
@@ -328,7 +328,7 @@ QComboBox::down-arrow:on {
               <number>0</number>
              </property>
              <item>
-              <widget class="QSwitchButton" name="label_5">
+              <widget class="QSwitchButton" name="startWithBoot">
                <property name="enabled">
                 <bool>true</bool>
                </property>
@@ -412,7 +412,7 @@ QComboBox::down-arrow:on {
               <number>0</number>
              </property>
              <item>
-              <widget class="QSwitchButton" name="label_7">
+              <widget class="QSwitchButton" name="punctuationReplace">
                <property name="enabled">
                 <bool>true</bool>
                </property>
@@ -496,7 +496,7 @@ QComboBox::down-arrow:on {
               <number>0</number>
              </property>
              <item>
-              <widget class="QSwitchButton" name="label_9">
+              <widget class="QSwitchButton" name="leftCornerScreenshot">
                <property name="enabled">
                 <bool>true</bool>
                </property>
@@ -580,7 +580,7 @@ QComboBox::down-arrow:on {
               <number>0</number>
              </property>
              <item>
-              <widget class="QSwitchButton" name="label_11">
+              <widget class="QSwitchButton" name="resultDialogFollow">
                <property name="enabled">
                 <bool>true</bool>
                </property>
@@ -664,7 +664,7 @@ QComboBox::down-arrow:on {
               <number>0</number>
              </property>
              <item>
-              <widget class="QSwitchButton" name="label_13">
+              <widget class="QSwitchButton" name="resultAutoCopy">
                <property name="enabled">
                 <bool>true</bool>
                </property>
@@ -748,7 +748,7 @@ QComboBox::down-arrow:on {
               <number>0</number>
              </property>
              <item>
-              <widget class="QSwitchButton" name="label_15">
+              <widget class="QSwitchButton" name="resultAutoFocus">
                <property name="enabled">
                 <bool>true</bool>
                </property>
@@ -832,7 +832,7 @@ QComboBox::down-arrow:on {
               <number>0</number>
              </property>
              <item>
-              <widget class="QSwitchButton" name="label_26">
+              <widget class="QSwitchButton" name="resultAutoRead">
                <property name="enabled">
                 <bool>true</bool>
                </property>
@@ -997,7 +997,7 @@ QComboBox::down-arrow:on {
                 </font>
                </property>
                <property name="text">
-                <string>ApiID       :</string>
+                <string>API Key       :</string>
                </property>
               </widget>
              </item>
@@ -1020,7 +1020,7 @@ QComboBox::down-arrow:on {
                 </font>
                </property>
                <property name="text">
-                <string>ApiSecret :</string>
+                <string>Secret Key   :</string>
                </property>
               </widget>
              </item>
@@ -1126,7 +1126,7 @@ QComboBox::down-arrow:on {
                 </font>
                </property>
                <property name="text">
-                <string>ApiID       :</string>
+                <string>API Key       :</string>
                </property>
               </widget>
              </item>
@@ -1149,7 +1149,7 @@ QComboBox::down-arrow:on {
                 </font>
                </property>
                <property name="text">
-                <string>ApiSecret :</string>
+                <string>Secret Key   :</string>
                </property>
               </widget>
              </item>
@@ -1240,7 +1240,7 @@ QComboBox::down-arrow:on {
                 </font>
                </property>
                <property name="text">
-                <string>ApiID       :</string>
+                <string>API Key       :</string>
                </property>
               </widget>
              </item>
@@ -1263,7 +1263,7 @@ QComboBox::down-arrow:on {
                 </font>
                </property>
                <property name="text">
-                <string>ApiSecret :</string>
+                <string>Secret Key   :</string>
                </property>
               </widget>
              </item>

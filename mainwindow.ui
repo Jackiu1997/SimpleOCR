@@ -24,7 +24,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="assets.qrc">
-    <normaloff>:/assets/icon/screenshot.png</normaloff>:/assets/icon/screenshot.png</iconset>
+    <normaloff>:/assets/icon/simple_ocr.ico</normaloff>:/assets/icon/simple_ocr.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">* {
@@ -44,7 +44,7 @@ QToolButton:pressed {
 	background-color: rgb(243, 243, 243);
 	border-radius: 8px;
 }
-QGraphicsView {
+.QFrame {
 	background-color: rgb(255, 255, 255);
 	border-radius: 8px;
 	padding: 10px;
@@ -59,6 +59,12 @@ QTextEdit {
 	border-color: rgb(195, 195, 195);
 	border-style: solid;
 	border-width: 1px;
+	font-family: &quot;宋体&quot;;
+	font-size: 18px;
+}
+QLabel#inputEdit {
+	font-family: &quot;宋体&quot;;
+	font-size: 18px;
 }
 </string>
   </property>
@@ -68,7 +74,7 @@ QTextEdit {
      <number>0</number>
     </property>
     <item>
-     <layout class="QVBoxLayout" name="leftLayout" stretch="0,0">
+     <layout class="QVBoxLayout" name="leftLayout" stretch="1,0">
       <property name="spacing">
        <number>24</number>
       </property>
@@ -85,10 +91,49 @@ QTextEdit {
        <number>24</number>
       </property>
       <item>
-       <widget class="QGraphicsView" name="imageGraphicView">
-        <property name="styleSheet">
-         <string notr="true"/>
+       <widget class="QFrame" name="frame">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
         </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <property name="topMargin">
+          <number>10</number>
+         </property>
+         <property name="rightMargin">
+          <number>10</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="inputEdit">
+           <property name="font">
+            <font>
+             <family>宋体</family>
+             <pointsize>-1</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Simple OCR</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::AutoText</enum>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>
@@ -499,13 +544,7 @@ QTextEdit {
        <number>24</number>
       </property>
       <item>
-       <widget class="QTextEdit" name="textEdit">
-        <property name="font">
-         <font>
-          <family>微软雅黑</family>
-          <pointsize>-1</pointsize>
-         </font>
-        </property>
+       <widget class="QTextEdit" name="resultEdit">
         <property name="styleSheet">
          <string notr="true"/>
         </property>
@@ -522,10 +561,8 @@ QTextEdit {
          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'微软雅黑'; font-size:20px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:9pt;&quot;&gt;极度扫描算是一款新产品了，目前可能还有一些不足的地方，但通过老夜几个月的观察，永久会员是越来越贵了还可能会取消永久套餐换用包月包年套餐，如果软件能长期久远的发展永久会员无疑是最好的理财产品。&lt;br /&gt;&lt;br /&gt;最后就是本文中多次提及到了白描和Panda OCR，这两款工具口碑都非常不错，如果手机用到的识别比较多直接推荐用白描，iOS版本目前也就白描支持。而Panda OCR是一款免费的工具识别接口也都是写免费的，个人用倒是可以用来办公倒是有点压力，但光凭免费无广告就值得推荐一波。极度扫描功能比较全面平时用于复杂识别时还是推荐使用的效果非常不错，也算是PC端值得付费的工具之一了，小问题还有点不过平时一些识别任务还是能轻松解决的！&lt;br /&gt;&lt;br /&gt;附上其他两款识别工具的链接： &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:9pt;&quot;&gt;较全面平时用于复杂识别时还是推荐使用的效果非常不错，也算是PC端值得付费的工具之一了，小问题还有点不过平时一些识别任务还是能轻松解决的！&lt;br /&gt;&lt;br /&gt;附上其他两款识别工具的链接： &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:9pt;&quot;&gt;较全面平时用于复杂识别时还是推荐使用的效果非常不错，也算是PC端值得付费的工具之一了，小问题还有点不过平时一些识别任务还是能轻松解决的！&lt;br /&gt;&lt;br /&gt;附上其他两款识别工具的链接： &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'宋体'; font-size:18px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>

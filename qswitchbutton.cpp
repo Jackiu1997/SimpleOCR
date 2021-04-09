@@ -4,10 +4,11 @@
 #include <QRectF>
 
 QSwitchButton::QSwitchButton(QWidget *parent)
-    : QLabel(parent), isSelected(true), buttonWidth(80), buttonHeight(30)
+    : QLabel(parent), isEnable(true), isSelected(true)
+    , isAntiAliasing(true), buttonWidth(80), buttonHeight(30)
     , backgroundColorSelected(Qt::white), backgroundColorNotSelected("#E7E3E7")
-    , isAntiAliasing(true), sliderColorSelected("#63BAFF"), sliderColorNotSelected("#7B797B")
-    , rectRound(30), isEnable(true), buttonStyle(Ellipse)
+    , sliderColorSelected("#63BAFF"), sliderColorNotSelected("#7B797B")
+    , rectRound(30), buttonStyle(Ellipse)
 {
     resize(buttonWidth, buttonHeight);
     setMouseTracking(true);
@@ -171,7 +172,7 @@ void QSwitchButton::DrawBackRect(QPainter* painter, const QRectF& rect)
     switch (buttonStyle)
     {
     case Rectage:
-        painter->drawRoundRect(rect, rectRound, rectRound);
+        painter->drawRoundedRect(rect, rectRound, rectRound);
         break;
     case Ellipse:
         painter->drawEllipse(0, 0, buttonHeight, buttonHeight);
@@ -188,7 +189,7 @@ void QSwitchButton::DrawSliderRect(QPainter* painter, const QRectF& rect)
     switch (buttonStyle)
     {
     case Rectage:
-        painter->drawRoundRect(rect, rectRound, rectRound);
+        painter->drawRoundedRect(rect, rectRound, rectRound);
         break;
     case Ellipse:
         painter->drawEllipse(rect);

@@ -83,7 +83,6 @@ protected:
 
 private:
     void DrawBackRect(QPainter* painter, const QRectF& rect);
-
     void DrawSliderRect(QPainter* painter, const QRectF& rect);
 
 private:
