@@ -4,6 +4,8 @@
 #include "networkapi.h"
 #include "mainwindow.h"
 #include "clipboardthread.h"
+#include "baidubcsapi.h"
+#include "baidutranslateapi.h"
 
 #include <QFileDialog>
 #include <QDebug>
@@ -15,9 +17,18 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    // 默认为 OCR 模式
-    ui->textRadioButtton->setChecked(true);
+    ui->textRadioButtton->setChecked(true); // 默认为 OCR 模式
 
+    initSettings();
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::initSettings()
+{
     settings = new AppSettings();
 
     clipboard = QApplication::clipboard();
@@ -27,14 +38,9 @@ MainWindow::MainWindow(QWidget *parent)
         clipboardThread->start();
     }
 
-    ocrApi = new BaiduOCRAPI();
-    translateApi = new BaiduTransAPI();
-    formulaApi = new BaiduFormulaAPI();
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
+    ocrApi = new BaiduBcsAPI(settings->getOcrEngineConf());
+    translateApi = new BaiduTranslateAPI(settings->getTranslateEngineConf());
+    formulaApi = new BaiduBcsAPI(settings->getFormulaEngineConf());
 }
 
 void MainWindow::on_shotButton_pressed()

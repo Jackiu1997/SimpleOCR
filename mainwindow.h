@@ -21,6 +21,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void initSettings();
+
 private slots:
     void on_shotButton_pressed();
     void on_imageButton_pressed();

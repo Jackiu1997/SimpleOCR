@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.11.1, 2021-04-09T22:14:25. -->
+<!-- Written by QtCreator 4.11.1, 2021-04-10T01:15:18. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -58,7 +58,8 @@
    <valuelist type="QVariantList" key="ClangCodeModel.CustomCommandLineKey">
     <value type="QString">-fno-delayed-template-parsing</value>
    </valuelist>
-   <value type="bool" key="ClangCodeModel.UseGlobalConfig">true</value>
+   <value type="bool" key="ClangCodeModel.UseGlobalConfig">false</value>
+   <value type="QString" key="ClangCodeModel.WarningConfigId">{0de642de-2930-4e71-b8f7-1757d18a7cc5}</value>
   </valuemap>
  </data>
  <data>

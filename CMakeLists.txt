@@ -49,8 +49,11 @@ if(ANDROID)
     settingform.ui
     qswitchbutton.cpp
     qswitchbutton.h
-    networkapi.cpp
     networkapi.h
+    baidubcsapi.cpp
+    baidubcsapi.h
+    baidutranslateapi.cpp
+    baidutranslateapi.h
     clipboardthread.cpp
     clipboardthread.h
     appsettings.cpp
@@ -70,8 +73,11 @@ else()
       settingform.ui
       qswitchbutton.cpp
       qswitchbutton.h
-      networkapi.cpp
       networkapi.h
+      baidubcsapi.cpp
+      baidubcsapi.h
+      baidutranslateapi.cpp
+      baidutranslateapi.h
       clipboardthread.cpp
       clipboardthread.h
       appsettings.cpp

@@ -121,78 +121,156 @@ void AppSettings::setResultAutoRead(bool value)
     saveSettings();
 }
 
+int AppSettings::getOcrEngineOption() const
+{
+    return ocrEngineOption;
+}
+
+void AppSettings::setOcrEngineOption(int value)
+{
+    ocrEngineOption = value;
+    jsonSettings.insert("ocrEngineOption", value);
+    saveSettings();
+}
+
+int AppSettings::getTranslateEngineOption() const
+{
+    return translateEngineOption;
+}
+
+void AppSettings::setTranslateEngineOption(int value)
+{
+    translateEngineOption = value;
+    jsonSettings.insert("translateEngineOption", value);
+    saveSettings();
+}
+
+int AppSettings::getFormulaEngineOption() const
+{
+    return formulaEngineOption;
+}
+
+void AppSettings::setFormulaEngineOption(int value)
+{
+    formulaEngineOption = value;
+    jsonSettings.insert("formulaEngineOption", value);
+    saveSettings();
+}
+
+QJsonObject AppSettings::getOcrEngineConf() const
+{
+    return ocrEngines.size() > ocrEngineOption
+            ? ocrEngines.at(ocrEngineOption).toObject()
+            : QJsonObject();
+}
+
+QJsonObject AppSettings::getTranslateEngineConf() const
+{
+    return translateEngines.size() > translateEngineOption
+            ? translateEngines.at(translateEngineOption).toObject()
+            : QJsonObject();
+}
+
+QJsonObject AppSettings::getFormulaEngineConf() const
+{
+    return formulaEngines.size() > formulaEngineOption
+            ? formulaEngines.at(formulaEngineOption).toObject()
+            : QJsonObject();
+}
+
+QJsonArray AppSettings::getOcrEngines() const
+{
+    return ocrEngines;
+}
+
+void AppSettings::setOcrEngines(const QJsonArray &value)
+{
+    ocrEngines = value;
+    jsonSettings.insert("ocrEngines", ocrEngines);
+}
+
+QJsonArray AppSettings::getTranslateEngines() const
+{
+    return translateEngines;
+}
+
+void AppSettings::setTranslateEngines(const QJsonArray &value)
+{
+    translateEngines = value;
+    jsonSettings.insert("translateEngines", translateEngines);
+}
+
+QJsonArray AppSettings::getFormulaEngines() const
+{
+    return formulaEngines;
+}
+
+void AppSettings::setFormulaEngines(const QJsonArray &value)
+{
+    formulaEngines = value;
+    jsonSettings.insert("formulaEngines", formulaEngines);
+}
+
 void AppSettings::loadSettings()
 {
+    jsonSettings = QJsonObject();
+    
     QFile file("app_settings.json");
     if (file.exists() && file.open(QIODevice::ReadOnly))
     {
         QByteArray bytes = file.readAll();
         jsonSettings = Utils::parseJson(&bytes);
 
-        if (jsonSettings.contains("watchClipboard") && jsonSettings.value("watchClipboard").isBool()) {
-            watchClipboard = jsonSettings.value("watchClipboard").toBool();
-        } else {
-            jsonSettings.insert("watchClipboard", watchClipboard);
-        }
+        // Switch设置选项读取
+        watchClipboard = jsonSettings.contains("watchClipboard")
+                ? jsonSettings.value("watchClipboard").toBool()
+                : false;
+        selectWordTranslate = jsonSettings.contains("selectWordTranslate")
+                ? jsonSettings.value("selectWordTranslate").toBool()
+                : false;
+        startWithBoot = jsonSettings.contains("startWithBoot")
+                ? jsonSettings.value("startWithBoot").toBool()
+                : false;
+        punctuationReplace = jsonSettings.contains("punctuationReplace")
+                ? jsonSettings.value("punctuationReplace").toBool()
+                : false;
+        leftCornerScreenshot = jsonSettings.contains("leftCornerScreenshot")
+                ? jsonSettings.value("leftCornerScreenshot").toBool()
+                : false;
+        resultDialogFollow = jsonSettings.contains("resultDialogFollow")
+                ? jsonSettings.value("resultDialogFollow").toBool()
+                : false;
+        resultAutoCopy = jsonSettings.contains("resultAutoCopy")
+                ? jsonSettings.value("resultAutoCopy").toBool()
+                : false;
+        resultAutoFocus = jsonSettings.contains("resultAutoFocus")
+                ? jsonSettings.value("resultAutoFocus").toBool()
+                : false;
+        resultAutoRead = jsonSettings.contains("resultAutoRead")
+                ? jsonSettings.value("resultAutoRead").toBool()
+                : false;
 
-        if (jsonSettings.contains("selectWordTranslate") && jsonSettings.value("selectWordTranslate").isBool()) {
-            selectWordTranslate = jsonSettings.value("selectWordTranslate").toBool();
-        } else {
-            jsonSettings.insert("selectWordTranslate", selectWordTranslate);
-        }
+        // 引擎选择读取
+        ocrEngineOption = jsonSettings.contains("ocrEngineOption")
+                ? jsonSettings.value("ocrEngineOption").toInt()
+                : 0;
+        translateEngineOption = jsonSettings.contains("translateEngineOption")
+                ? jsonSettings.value("translateEngineOption").toInt()
+                : 0;
+        formulaEngineOption = jsonSettings.contains("formulaEngineOption")
+                ? jsonSettings.value("formulaEngineOption").toInt()
+                : 0;
 
-        if (jsonSettings.contains("startWithBoot") && jsonSettings.value("startWithBoot").isBool()) {
-            startWithBoot = jsonSettings.value("startWithBoot").toBool();
-        } else {
-            jsonSettings.insert("startWithBoot", startWithBoot);
-        }
-
-        if (jsonSettings.contains("punctuationReplace") && jsonSettings.value("punctuationReplace").isBool()) {
-            punctuationReplace = jsonSettings.value("punctuationReplace").toBool();
-        } else {
-            jsonSettings.insert("punctuationReplace", punctuationReplace);
-        }
-
-        if (jsonSettings.contains("leftCornerScreenshot") && jsonSettings.value("leftCornerScreenshot").isBool()) {
-            leftCornerScreenshot = jsonSettings.value("leftCornerScreenshot").toBool();
-        } else {
-            jsonSettings.insert("leftCornerScreenshot", leftCornerScreenshot);
-        }
-
-        if (jsonSettings.contains("resultDialogFollow") && jsonSettings.value("resultDialogFollow").isBool()) {
-            resultDialogFollow = jsonSettings.value("resultDialogFollow").toBool();
-        } else {
-            jsonSettings.insert("resultDialogFollow", resultDialogFollow);
-        }
-
-        if (jsonSettings.contains("resultAutoCopy") && jsonSettings.value("resultAutoCopy").isBool()) {
-            resultAutoCopy = jsonSettings.value("resultAutoCopy").toBool();
-        } else {
-            jsonSettings.insert("resultAutoCopy", resultAutoCopy);
-        }
-
-        if (jsonSettings.contains("resultAutoFocus") && jsonSettings.value("resultAutoFocus").isBool()) {
-            resultAutoFocus = jsonSettings.value("resultAutoFocus").toBool();
-        } else {
-            jsonSettings.insert("resultAutoFocus", resultAutoFocus);
-        }
-
-        if (jsonSettings.contains("resultAutoRead") && jsonSettings.value("resultAutoRead").isBool()) {
-            resultAutoRead = jsonSettings.value("resultAutoRead").toBool();
-        } else {
-            jsonSettings.insert("resultAutoRead", resultAutoRead);
-        }
-    } else {
-        jsonSettings = QJsonObject();
-        jsonSettings.insert("watchClipboard", watchClipboard);
-        jsonSettings.insert("selectWordTranslate", selectWordTranslate);
-        jsonSettings.insert("startWithBoot", startWithBoot);
-        jsonSettings.insert("punctuationReplace", punctuationReplace);
-        jsonSettings.insert("leftCornerScreenshot", leftCornerScreenshot);
-        jsonSettings.insert("resultDialogFollow", resultDialogFollow);
-        jsonSettings.insert("resultAutoCopy", resultAutoCopy);
-        jsonSettings.insert("resultAutoFocus", resultAutoFocus);
-        jsonSettings.insert("resultAutoRead", resultAutoRead);
+        // 引擎配置读取
+        ocrEngines = jsonSettings.contains("ocrEngines")
+                ? jsonSettings.value("ocrEngines").toArray()
+                : QJsonArray();
+        translateEngines = jsonSettings.contains("translateEngines")
+                ? jsonSettings.value("translateEngines").toArray()
+                : QJsonArray();
+        formulaEngines = jsonSettings.contains("formulaEngines")
+                ? jsonSettings.value("formulaEngines").toArray()
+                : QJsonArray();
     }
     file.close();
 }
@@ -203,8 +281,27 @@ void AppSettings::saveSettings()
     if (file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         QJsonDocument jsonDoc;
-        jsonDoc.setObject(jsonSettings);
 
+        jsonSettings = QJsonObject();
+        jsonSettings.insert("watchClipboard", watchClipboard);
+        jsonSettings.insert("selectWordTranslate", selectWordTranslate);
+        jsonSettings.insert("startWithBoot", startWithBoot);
+        jsonSettings.insert("punctuationReplace", punctuationReplace);
+        jsonSettings.insert("leftCornerScreenshot", leftCornerScreenshot);
+        jsonSettings.insert("resultDialogFollow", resultDialogFollow);
+        jsonSettings.insert("resultAutoCopy", resultAutoCopy);
+        jsonSettings.insert("resultAutoFocus", resultAutoFocus);
+        jsonSettings.insert("resultAutoRead", resultAutoRead);
+
+        jsonSettings.insert("ocrEngineOption", ocrEngineOption);
+        jsonSettings.insert("translateEngineOption", translateEngineOption);
+        jsonSettings.insert("formulaEngineOption", formulaEngineOption);
+
+        jsonSettings.insert("ocrEngines", ocrEngines);
+        jsonSettings.insert("translateEngines", translateEngines);
+        jsonSettings.insert("formulaEngines", formulaEngines);
+
+        jsonDoc.setObject(jsonSettings);
         file.write(jsonDoc.toJson());
     }
     file.close();
